@@ -1,5 +1,5 @@
-# Repohub
-> Search repos without access guthub
+# REPOREPO
+> Search what do you want!
 
 This app is for you to search for images or others.
 
