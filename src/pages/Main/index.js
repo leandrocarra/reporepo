@@ -84,6 +84,7 @@ export default class Main extends Component {
                 <a
                   href="https://www.magazineluiza.com.br/smartphone-quantum-muv-pro-azul-tela-de-5-5-32gb-16mp/p/gd3g79a81b/te/qtum/"
                   alt={repository.name}
+                  target="_blank"
                 >
                   <p>Smartphone Quantum MÜV PRO, Azul, Tela de 5.5”, 32GB, 16MP</p>
                   <div>
