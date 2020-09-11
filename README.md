@@ -1,7 +1,7 @@
 # Repohub
 > Search repos without access guthub
 
-This app is for you to search for repos whenever you need, without the need to login or access github
+This app is for you to search for images or others.
 
 ![](repohub.gif)
 
