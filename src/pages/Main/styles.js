@@ -24,6 +24,17 @@ const rotate = keyframes`
   }
 `;
 
+const showing = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+     opacity: 1
+  }
+`;
+
+
 export const SubmitButton = styled.button.attrs((props) => ({
   type: 'submit',
   disabled: props.loading,
@@ -52,10 +63,32 @@ export const SubmitButton = styled.button.attrs((props) => ({
     `}
 `;
 
+function createCSS() {
+  let styles = '';
+
+  for (let i = 0; i < 20; i += 1) {
+    styles += `
+    .effect${i} {
+      animation: .333s ease-in-out ${i/13}s 1 backwards;
+      opacity: 1;
+    }`
+
+  }
+  return css`${styles}`;
+}
+
+
 export const List = styled.ul`
   list-style: none;
   margin-top: 30px;
   overflow: hidden;
+  ${createCSS()}
+  ${(props) =>
+    css`
+      li {
+        animation-name: ${showing} !important;
+      }
+    `}
 
   li {
     padding: 12px;

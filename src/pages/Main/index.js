@@ -79,17 +79,18 @@ export default class Main extends Component {
           </SubmitButton>
         </Form>
         <List>
-           {repositories.map((repository) => (
-              <li key={repository.name}>
-                <FaCheck color="#F36F2C" size={30} class="checked" />
+           {repositories.map((repository, index) => (
+              <li key={repository.name} className={`effect${index}`}>
+                <FaCheck color="#F36F2C" size={30} className="checked" />
                 <a
                   href="https://www.magazineluiza.com.br/smartphone-quantum-muv-pro-azul-tela-de-5-5-32gb-16mp/p/gd3g79a81b/te/qtum/"
                   alt={repository.name}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <p>Smartphone Quantum MÜV PRO, Azul, Tela de 5.5”, 32GB, 16MP</p>
                   <div>
-                    <img src="https://a-static.mlcdn.com.br/618x463/smartphone-quantum-muv-pro-azul-tela-de-5-5-32gb-16mp/onofre-agora/745804/1ba149b5f3aee4f4bf0715772888924c.jpg" title={repository.name}/>
+                    <img src="https://a-static.mlcdn.com.br/618x463/smartphone-quantum-muv-pro-azul-tela-de-5-5-32gb-16mp/onofre-agora/745804/1ba149b5f3aee4f4bf0715772888924c.jpg" alt={repository.name}/>
                   </div>
                 </a>
               </li>
