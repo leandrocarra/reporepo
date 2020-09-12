@@ -1,6 +1,6 @@
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
-import { FaSearch, FaPlus, FaSpinner, FaCheck } from 'react-icons/fa';
+import { FaSearch, FaSpinner, FaCheck } from 'react-icons/fa';
 
 import api from '../../services/api';
 import Container from '../../components/Container';

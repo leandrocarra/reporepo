@@ -1,5 +1,4 @@
 import styled, { keyframes, css } from 'styled-components';
-import { FaCheck } from 'react-icons/fa';
 
 export const Form = styled.form`
   margin-top: 30px;
