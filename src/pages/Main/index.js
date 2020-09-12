@@ -1,6 +1,6 @@
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
-import { FaSearch, FaPlus, FaSpinner } from 'react-icons/fa';
+import { FaSearch, FaPlus, FaSpinner, FaCheck } from 'react-icons/fa';
 
 import api from '../../services/api';
 import Container from '../../components/Container';
@@ -81,6 +81,7 @@ export default class Main extends Component {
         <List>
            {repositories.map((repository) => (
               <li key={repository.name}>
+                <FaCheck color="#F36F2C" size={30} class="checked" />
                 <a
                   href="https://www.magazineluiza.com.br/smartphone-quantum-muv-pro-azul-tela-de-5-5-32gb-16mp/p/gd3g79a81b/te/qtum/"
                   alt={repository.name}
