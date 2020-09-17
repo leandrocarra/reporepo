@@ -10,7 +10,7 @@ const Container = styled.div`
   overflow: hidden;
 
   h1 {
-    font-size: 20px;
+    font-size: 2.3vw;
     display: flex;
     flex-direction: row;
     align-items: center;

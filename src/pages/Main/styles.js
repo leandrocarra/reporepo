@@ -69,7 +69,7 @@ function createCSS() {
   for (let i = 0; i < 20; i += 1) {
     styles += `
     .effect${i} {
-      animation: .333s ease-in-out ${i/13}s 1 backwards;
+      animation: .233s ease-in-out ${i/13}s 1 backwards;
       opacity: 1;
     }`
 
@@ -77,10 +77,19 @@ function createCSS() {
   return css`${styles}`;
 }
 
+export const Waiting = styled.div`
+  svg {
+    animation: ${rotate} 2s linear infinite;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 500px;
+`
 
 export const List = styled.ul`
   list-style: none;
-  margin-top: 30px;
   overflow: hidden;
   ${createCSS()}
   ${(props) =>
@@ -89,56 +98,61 @@ export const List = styled.ul`
         animation-name: ${showing} !important;
       }
     `}
-
   li {
-    padding: 12px;
+    padding: 15px 12px 50px 12px;
     width: 23%;
     float: left;
-    height: 35vh;
+    min-height: 174px;
     box-shadow: 1px 10px 20px rgba(0, 0, 0, 0.1);
     border: 1px solid #e8e8e8;
     margin: 30px 1%;
     border-radius: 5px;
     text-align: center;
     position: relative;
+    transition: .233s;
+    &:hover {
+      box-shadow: 1px 10px 20px rgba(0, 0, 0, 0.6);
+    }
 
     .checked {
       display: none;
     }
-
-    p {
+    .contentTitle {
+      height: 80px;
+    }
+    .title {
       font-size: 1.5vw;
       line-height: normal;
       margin-bottom: 15px;
       color: #404040;
       display: inline-block;
       font-weight: 400;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     div {
       text-align: center;
       margin-bottom: 10px;
     }
-
+    .contentImage {
+      height: 21vh;
+    }
     img {
       width: 80%;
       max-width: 160px;
-      min-width: 130px;
+      min-width: 100px;
+    }
+    a {
+      text-decoration: none;
     }
 
     &:first-child{
-      padding: 20px;
       border: 1px solid #F36F2C;
-      width: 50%;
-      margin: 30px 0;
-      clear: both;
-      text-align: left;
       box-shadow: 1px 10px 20px rgba(252,154,40, 0.3);
-      float: left;
-      min-height: 23vh;
-      height: auto;
-      max-height: 35vh;
-
       .checked {
         position: absolute;
         right: -10px;
@@ -149,48 +163,28 @@ export const List = styled.ul`
         border-radius: 50%;
       }
 
-      p {
-        float: right;
-        width: 40%;
-        font-size: 1.8vw;
-      }
+    }
 
-      div {
-        float: left;
-        text-align: left;
-        margin-bottom: 10px;
-        overflow: hidden;
-        width: 60%;
+    @media(max-width: 700px) {
+      width: 47%;
+      .title, .price, .brand {
+        font-size: 2.5vw;
       }
 
       img {
-        width: 80%;
-        max-width: 250px;
-        min-width: 130px;
+        min-width: 74px;
       }
     }
-
-    a {
-      text-decoration: none;
-    }
-
-  }
-  @media(max-width: 890px) {
-    li {
-      height: 21vh;
-      img {
-        width: 60%;
-        max-width: auto;
-        min-width: auto;
+    @media(max-width: 400px) {
+      width: 47%;
+      .contentImage {
+        height: 10vh;
       }
-
-      &:first-child{
-        min-height: 20vh;
-        img {
-          width: 60%;
-          max-width: auto;
-          min-width: auto;
-        }
+      .contentTitle {
+        height: 60px;
+      }
+      .title, .price, .brand {
+        font-size: 4.5vw;
       }
     }
   }

@@ -4,34 +4,38 @@ import { FaSearch, FaSpinner, FaCheck } from 'react-icons/fa';
 
 import api from '../../services/api';
 import Container from '../../components/Container';
+import { CircleRating } from '../../components/CircleRating';
+import LoadingPage from '../../components/LoadingPage';
 
-import { Form, SubmitButton, List } from './styles';
+import { Form, SubmitButton, List, Waiting } from './styles';
+import { CircleRatingComponent } from '../../components/CircleRating/styles';
 
 export default class Main extends Component {
   state = {
-    newRepo: '',
-    repositories: [],
+    newSearch: '',
+    products: [],
     loading: false,
   };
 
   componentDidMount() {
-    const repositories = localStorage.getItem('repositories');
+    const localProducts = localStorage.getItem('products');
 
-    if (repositories) {
-      this.setState({ repositories: JSON.parse(repositories) });
+    if (localProducts) {
+      this.setState({ products: JSON.parse(localProducts) });
     }
   }
 
   componentDidUpdate(_, prevState) {
-    const { repositories } = this.state;
+    const { products } = this.state;
 
-    if (prevState.repositories !== repositories) {
-      localStorage.setItem('repositories', JSON.stringify(repositories));
+    if (prevState.products !== products) {
+      localStorage.setItem('products', JSON.stringify(products));
     }
+
   }
 
   handleInputChange = (e) => {
-    this.setState({ newRepo: e.target.value });
+    this.setState({ newSearch: e.target.value });
   };
 
   handleSubmit = async (e) => {
@@ -39,24 +43,19 @@ export default class Main extends Component {
 
     this.setState({ loading: true });
 
-    const { newRepo, repositories } = this.state;
+    const { newSearch, products } = this.state;
 
-    const response = await api.get(`/repos/${newRepo}`);
-
-    const data = {
-      name: response.data.full_name,
-    };
+    const response = await api.get('/results')
 
     this.setState({
-      repositories: [...repositories, data],
-      newRepo: '',
+      products: [...response.data ],
+      newSearch: '',
       loading: false,
     });
   };
 
   render() {
-    const { newRepo, repositories, loading } = this.state;
-
+    const { newSearch, products, loading, empty } = this.state;
     return (
       <Container>
         <h1>
@@ -66,7 +65,7 @@ export default class Main extends Component {
            <input
             type="text"
             placeholder="Pesquisa um produto, marca, referencia..."
-            value={newRepo}
+            value={newSearch}
             onChange={this.handleInputChange}
           />
 
@@ -78,24 +77,47 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
-        <List>
-           {repositories.map((repository, index) => (
-              <li key={repository.name} className={`effect${index}`}>
+        {products.length === 0 && !loading ? <LoadingPage/> : ''}
+        {loading ? (
+          <Waiting>
+            <FaSpinner color="#F36F2C" size={80} />
+          </Waiting>
+        ) : (
+          <List>
+            {products.map((product, index) => (
+              <li key={index} className={`effect${index}`}>
                 <FaCheck color="#F36F2C" size={30} className="checked" />
                 <a
-                  href="https://www.magazineluiza.com.br/smartphone-quantum-muv-pro-azul-tela-de-5-5-32gb-16mp/p/gd3g79a81b/te/qtum/"
-                  alt={repository.name}
+                  href="eee"
+                  alt={product.score}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <p>Smartphone Quantum MÜV PRO, Azul, Tela de 5.5”, 32GB, 16MP</p>
-                  <div>
-                    <img src="https://a-static.mlcdn.com.br/618x463/smartphone-quantum-muv-pro-azul-tela-de-5-5-32gb-16mp/onofre-agora/745804/1ba149b5f3aee4f4bf0715772888924c.jpg" alt={repository.name}/>
+                  <div className="contentImage">
+                    <img src={product.image} alt={product.score}/>
                   </div>
+                  <div className="contentTitle">
+                    <p className="title">{product.title}</p>
+                  </div>
+                  <CircleRatingComponent
+                    fullCircle={product.score}
+                  >
+                    <div className="circle__container">
+                      <CircleRating
+                        tittle={'SCORE'}
+                        progressStatus={product.score}
+                        specialClass={`cirle-rating__featured effectRating${index}`}
+                        position={'circle__three'}
+                        number={product.score}
+                      />
+                    </div>
+                  </CircleRatingComponent>
                 </a>
               </li>
-          ))}
-        </List>
+            ))}
+          </List>
+        )}
+
       </Container>
     );
   }
