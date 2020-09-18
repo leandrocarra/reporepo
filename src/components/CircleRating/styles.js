@@ -19,7 +19,7 @@ function CircleEffect() {
   for (let i = 0; i < 20; i += 1) {
     styles += `
     .effectRating${i} {
-      animation: .233s ease-in-out ${(i * 1) / 13}s 1 slidein;
+      animation: .233s ease-in-out ${(i * 3) / 13}s 1 slidein;
       stroke-dashoffset: 358.142;
     }`;
   }

@@ -41,8 +41,8 @@ export default class Main extends Component {
     e.preventDefault();
 
     this.setState({ loading: true });
-
-    const response = await api.get('/results');
+    const { newSearch } = this.state;
+    const response = await api.get(`/${newSearch}`);
 
     this.setState({
       products: [...response.data],
