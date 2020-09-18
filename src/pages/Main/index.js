@@ -45,7 +45,7 @@ export default class Main extends Component {
     const response = await api.get(`/${newSearch}`);
 
     this.setState({
-      products: [...response.data],
+      products: [...response.data.results],
       newSearch: '',
       loading: false,
     });
