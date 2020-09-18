@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/reporepo/static/js/main.795b6663.chunk.js",
+    "main.js.map": "/reporepo/static/js/main.795b6663.chunk.js.map",
+    "runtime-main.js": "/reporepo/static/js/runtime-main.0850456c.js",
+    "runtime-main.js.map": "/reporepo/static/js/runtime-main.0850456c.js.map",
+    "static/js/2.6f5bbac0.chunk.js": "/reporepo/static/js/2.6f5bbac0.chunk.js",
+    "static/js/2.6f5bbac0.chunk.js.map": "/reporepo/static/js/2.6f5bbac0.chunk.js.map",
+    "index.html": "/reporepo/index.html",
+    "precache-manifest.e7993c657e83775563ce4e2545994ab5.js": "/reporepo/precache-manifest.e7993c657e83775563ce4e2545994ab5.js",
+    "service-worker.js": "/reporepo/service-worker.js",
+    "static/js/2.6f5bbac0.chunk.js.LICENSE.txt": "/reporepo/static/js/2.6f5bbac0.chunk.js.LICENSE.txt",
+    "static/media/fight.gif": "/reporepo/static/media/fight.2532bbce.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0850456c.js",
+    "static/js/2.6f5bbac0.chunk.js",
+    "static/js/main.795b6663.chunk.js"
+  ]
+}
