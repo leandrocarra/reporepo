@@ -7,7 +7,7 @@ export const Form = styled.form`
 
   input {
     flex: 1;
-    border: 1px solid #F36F2C;
+    border: 1px solid #f36f2c;
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 16px;
@@ -34,12 +34,11 @@ const showing = keyframes`
   }
 `;
 
-
 export const SubmitButton = styled.button.attrs((props) => ({
   type: 'submit',
   disabled: props.loading,
 }))`
-  background: #F36F2C;
+  background: #f36f2c;
   border: 0;
   padding: 0 15px;
   margin-left: 10px;
@@ -69,12 +68,13 @@ function createCSS() {
   for (let i = 0; i < 20; i += 1) {
     styles += `
     .effect${i} {
-      animation: .233s ease-in-out ${i/13}s 1 backwards;
+      animation: .233s ease-in-out ${i / 13}s 1 backwards;
       opacity: 1;
-    }`
-
+    }`;
   }
-  return css`${styles}`;
+  return css`
+    ${styles}
+  `;
 }
 
 export const Waiting = styled.div`
@@ -86,7 +86,19 @@ export const Waiting = styled.div`
   align-items: center;
   width: 100%;
   min-height: 500px;
-`
+`;
+export const SearchTitle = styled.div`
+  font-size: 2.4vw;
+  margin-top: 30px;
+  padding-left: 12px;
+  margin-bottom: -5px;
+  @media (max-width: 700px) {
+    font-size: 3.4vw;
+  }
+  @media (max-width: 400px) {
+    font-size: 4.4vw;
+  }
+`;
 
 export const List = styled.ul`
   list-style: none;
@@ -109,7 +121,7 @@ export const List = styled.ul`
     border-radius: 5px;
     text-align: center;
     position: relative;
-    transition: .233s;
+    transition: 0.233s;
     &:hover {
       box-shadow: 1px 10px 20px rgba(0, 0, 0, 0.6);
     }
@@ -150,9 +162,9 @@ export const List = styled.ul`
       text-decoration: none;
     }
 
-    &:first-child{
-      border: 1px solid #F36F2C;
-      box-shadow: 1px 10px 20px rgba(252,154,40, 0.3);
+    &:first-child {
+      border: 1px solid #f36f2c;
+      box-shadow: 1px 10px 20px rgba(252, 154, 40, 0.3);
       .checked {
         position: absolute;
         right: -10px;
@@ -162,12 +174,16 @@ export const List = styled.ul`
         padding: 5px;
         border-radius: 50%;
       }
-
     }
 
-    @media(max-width: 700px) {
+    @media (max-width: 980px) {
+      width: 31%;
+    }
+    @media (max-width: 700px) {
       width: 47%;
-      .title, .price, .brand {
+      .title,
+      .price,
+      .brand {
         font-size: 2.5vw;
       }
 
@@ -175,7 +191,7 @@ export const List = styled.ul`
         min-width: 74px;
       }
     }
-    @media(max-width: 400px) {
+    @media (max-width: 400px) {
       width: 47%;
       .contentImage {
         height: 10vh;
@@ -183,7 +199,9 @@ export const List = styled.ul`
       .contentTitle {
         height: 60px;
       }
-      .title, .price, .brand {
+      .title,
+      .price,
+      .brand {
         font-size: 4.5vw;
       }
     }

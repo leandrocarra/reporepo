@@ -7,7 +7,7 @@ import Container from '../../components/Container';
 import { CircleRating } from '../../components/CircleRating';
 import LoadingPage from '../../components/LoadingPage';
 
-import { Form, SubmitButton, List, Waiting } from './styles';
+import { Form, SubmitButton, List, Waiting, SearchTitle } from './styles';
 import { CircleRatingComponent } from '../../components/CircleRating/styles';
 
 export default class Main extends Component {
@@ -31,7 +31,6 @@ export default class Main extends Component {
     if (prevState.products !== products) {
       localStorage.setItem('products', JSON.stringify(products));
     }
-
   }
 
   handleInputChange = (e) => {
@@ -43,26 +42,24 @@ export default class Main extends Component {
 
     this.setState({ loading: true });
 
-    const { newSearch, products } = this.state;
-
-    const response = await api.get('/results')
+    const response = await api.get('/results');
 
     this.setState({
-      products: [...response.data ],
+      products: [...response.data],
       newSearch: '',
       loading: false,
     });
   };
 
   render() {
-    const { newSearch, products, loading, empty } = this.state;
+    const { newSearch, products, loading } = this.state;
     return (
       <Container>
         <h1>
           KUANTO<strong>BUSKA</strong>
         </h1>
         <Form onSubmit={this.handleSubmit}>
-           <input
+          <input
             type="text"
             placeholder="Pesquisa um produto, marca, referencia..."
             value={newSearch}
@@ -77,47 +74,51 @@ export default class Main extends Component {
             )}
           </SubmitButton>
         </Form>
-        {products.length === 0 && !loading ? <LoadingPage/> : ''}
+        {products.length === 0 && !loading ? <LoadingPage /> : ''}
         {loading ? (
           <Waiting>
             <FaSpinner color="#F36F2C" size={80} />
           </Waiting>
         ) : (
-          <List>
-            {products.map((product, index) => (
-              <li key={index} className={`effect${index}`}>
-                <FaCheck color="#F36F2C" size={30} className="checked" />
-                <a
-                  href="eee"
-                  alt={product.score}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <div className="contentImage">
-                    <img src={product.image} alt={product.score}/>
-                  </div>
-                  <div className="contentTitle">
-                    <p className="title">{product.title}</p>
-                  </div>
-                  <CircleRatingComponent
-                    fullCircle={product.score}
+          <>
+            <SearchTitle>
+              {products.length === 0
+                ? ''
+                : 'O resultado da sua ultima pesquisa foi essa'}
+            </SearchTitle>
+            <List>
+              {products.map((product, index) => (
+                <li key={index} className={`effect${index}`}>
+                  <FaCheck color="#F36F2C" size={30} className="checked" />
+                  <a
+                    href="eee"
+                    alt={product.score}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <div className="circle__container">
-                      <CircleRating
-                        tittle={'SCORE'}
-                        progressStatus={product.score}
-                        specialClass={`cirle-rating__featured effectRating${index}`}
-                        position={'circle__three'}
-                        number={product.score}
-                      />
+                    <div className="contentImage">
+                      <img src={product.image} alt={product.score} />
                     </div>
-                  </CircleRatingComponent>
-                </a>
-              </li>
-            ))}
-          </List>
+                    <div className="contentTitle">
+                      <p className="title">{product.title}</p>
+                    </div>
+                    <CircleRatingComponent fullCircle={product.score}>
+                      <div className="circle__container">
+                        <CircleRating
+                          tittle="SCORE"
+                          progressStatus={product.score}
+                          specialClass={`cirle-rating__featured effectRating${index}`}
+                          position="circle__three"
+                          number={product.score}
+                        />
+                      </div>
+                    </CircleRatingComponent>
+                  </a>
+                </li>
+              ))}
+            </List>
+          </>
         )}
-
       </Container>
     );
   }
